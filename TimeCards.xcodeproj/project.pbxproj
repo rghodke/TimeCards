@@ -14,15 +14,18 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		289ED5050DB92497003600B4 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289ED5040DB92497003600B4 /* MyViewController.m */; };
+		E432B4221974EF9D00B86631 /* View4.xib in Resources */ = {isa = PBXBuildFile; fileRef = E432B4211974EF9D00B86631 /* View4.xib */; };
+		E432B4261974EFD800B86631 /* View5.m in Sources */ = {isa = PBXBuildFile; fileRef = E432B4241974EFD800B86631 /* View5.m */; };
+		E432B4271974EFD800B86631 /* View5.xib in Resources */ = {isa = PBXBuildFile; fileRef = E432B4251974EFD800B86631 /* View5.xib */; };
+		E4A592BA19736EE700B70F94 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A592B919736EE700B70F94 /* QuartzCore.framework */; };
 		E4A7C3C71962595400A99C46 /* View2.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A7C3C51962595400A99C46 /* View2.m */; };
 		E4A7C3C81962595400A99C46 /* View2.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A7C3C61962595400A99C46 /* View2.xib */; };
-		E4A87DC8196CD16B006FAE74 /* View4.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A87DC6196CD16B006FAE74 /* View4.m */; };
-		E4A87DC9196CD16B006FAE74 /* View4.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A87DC7196CD16B006FAE74 /* View4.xib */; };
 		E4A89F9E196395F6005D62DA /* Education_(Civ5).png in Resources */ = {isa = PBXBuildFile; fileRef = E4A89F9C196395F6005D62DA /* Education_(Civ5).png */; };
 		E4A89F9F196395F6005D62DA /* q11115524.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4A89F9D196395F6005D62DA /* q11115524.jpg */; };
 		E4BC22E31966569F004504A0 /* View3.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BC22E11966569F004504A0 /* View3.m */; };
 		E4BC22E41966569F004504A0 /* View3.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4BC22E21966569F004504A0 /* View3.xib */; };
 		E4C150271967E0F0009D7549 /* DataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C150261967E0F0009D7549 /* DataClass.m */; };
+		E4D1AE341974E8E400ECFA34 /* View4.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D1AE321974E8E400ECFA34 /* View4.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,12 +41,14 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TimeCards_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeCards_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E432B4211974EF9D00B86631 /* View4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View4.xib; sourceTree = "<group>"; };
+		E432B4231974EFD800B86631 /* View5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View5.h; sourceTree = "<group>"; };
+		E432B4241974EFD800B86631 /* View5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View5.m; sourceTree = "<group>"; };
+		E432B4251974EFD800B86631 /* View5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View5.xib; sourceTree = "<group>"; };
+		E4A592B919736EE700B70F94 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E4A7C3C41962595400A99C46 /* View2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View2.h; sourceTree = "<group>"; };
 		E4A7C3C51962595400A99C46 /* View2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View2.m; sourceTree = "<group>"; };
 		E4A7C3C61962595400A99C46 /* View2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View2.xib; sourceTree = "<group>"; };
-		E4A87DC5196CD16B006FAE74 /* View4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View4.h; sourceTree = "<group>"; };
-		E4A87DC6196CD16B006FAE74 /* View4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View4.m; sourceTree = "<group>"; };
-		E4A87DC7196CD16B006FAE74 /* View4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View4.xib; sourceTree = "<group>"; };
 		E4A89F9C196395F6005D62DA /* Education_(Civ5).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Education_(Civ5).png"; sourceTree = "<group>"; };
 		E4A89F9D196395F6005D62DA /* q11115524.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = q11115524.jpg; sourceTree = "<group>"; };
 		E4BC22E01966569F004504A0 /* View3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View3.h; sourceTree = "<group>"; };
@@ -51,6 +56,8 @@
 		E4BC22E21966569F004504A0 /* View3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View3.xib; sourceTree = "<group>"; };
 		E4C150251967E0F0009D7549 /* DataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataClass.h; sourceTree = "<group>"; };
 		E4C150261967E0F0009D7549 /* DataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataClass.m; sourceTree = "<group>"; };
+		E4D1AE311974E8E400ECFA34 /* View4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View4.h; sourceTree = "<group>"; };
+		E4D1AE321974E8E400ECFA34 /* View4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View4.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4A592BA19736EE700B70F94 /* QuartzCore.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 			);
@@ -81,9 +89,12 @@
 				E4BC22E21966569F004504A0 /* View3.xib */,
 				E4C150251967E0F0009D7549 /* DataClass.h */,
 				E4C150261967E0F0009D7549 /* DataClass.m */,
-				E4A87DC5196CD16B006FAE74 /* View4.h */,
-				E4A87DC6196CD16B006FAE74 /* View4.m */,
-				E4A87DC7196CD16B006FAE74 /* View4.xib */,
+				E4D1AE311974E8E400ECFA34 /* View4.h */,
+				E4D1AE321974E8E400ECFA34 /* View4.m */,
+				E432B4211974EF9D00B86631 /* View4.xib */,
+				E432B4231974EFD800B86631 /* View5.h */,
+				E432B4241974EFD800B86631 /* View5.m */,
+				E432B4251974EFD800B86631 /* View5.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -132,6 +143,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E4A592B919736EE700B70F94 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 			);
@@ -193,11 +205,12 @@
 			files = (
 				1804550411D2CAB700C48934 /* TimeCards.xib in Resources */,
 				1804550511D2CAB700C48934 /* MainWindow.xib in Resources */,
+				E432B4271974EFD800B86631 /* View5.xib in Resources */,
+				E432B4221974EF9D00B86631 /* View4.xib in Resources */,
 				E4A89F9E196395F6005D62DA /* Education_(Civ5).png in Resources */,
 				E4A7C3C81962595400A99C46 /* View2.xib in Resources */,
 				E4A89F9F196395F6005D62DA /* q11115524.jpg in Resources */,
 				E4BC22E41966569F004504A0 /* View3.xib in Resources */,
-				E4A87DC9196CD16B006FAE74 /* View4.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,11 +223,12 @@
 			files = (
 				E4C150271967E0F0009D7549 /* DataClass.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				E432B4261974EFD800B86631 /* View5.m in Sources */,
 				1D3623260D0F684500981E51 /* TimeCardsAppDelegate.m in Sources */,
 				289ED5050DB92497003600B4 /* MyViewController.m in Sources */,
 				E4A7C3C71962595400A99C46 /* View2.m in Sources */,
 				E4BC22E31966569F004504A0 /* View3.m in Sources */,
-				E4A87DC8196CD16B006FAE74 /* View4.m in Sources */,
+				E4D1AE341974E8E400ECFA34 /* View4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

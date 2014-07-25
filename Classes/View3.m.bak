@@ -254,7 +254,7 @@ END:
 
 - (IBAction)buttonPressDone:(id)sender
 {
-    View4 *fourth = [[View4 alloc] initWithNibName:@"View4" bundle:[NSBundle mainBundle]]; //go to next view
+    View4 *fourth = [[View4 alloc] initWithNibName:@"View4" bundle:[NSBundle mainBundle]];
     [self presentViewController:fourth animated:YES completion:nil];
 }
 
@@ -266,7 +266,11 @@ END:
     [self CheckifDoneAdding];
     [ListofWords deselectRowAtIndexPath:[ListofWords indexPathForSelectedRow] animated:YES];
     [ListofDefinitions deselectRowAtIndexPath:[ListofDefinitions indexPathForSelectedRow] animated:YES];
-
+    selectedRow2 = NULL;
+    //[textField2 resignFirstResponder];
+    //button3.hidden = TRUE;
+    //button2.hidden = FALSE;
+    //[tableView deselectRowAtIndexPath:[ListofDefinitions indexPathForSelectedRow] animated:YES];
     
 }
 

@@ -9,13 +9,12 @@
 #import "View4.h"
 
 @implementation View4
-//synthesize the elements
 @synthesize worddef;
 @synthesize flip;
 @synthesize deter;
 @synthesize next;
-DataClass *obj3= nil; //local to this file variable
-int counter = 0; //counter variable local to this file
+DataClass *obj3= nil;
+int counter = 0;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,63 +32,63 @@ int counter = 0; //counter variable local to this file
     obj3 = [DataClass getInstance];
     if (obj3.info == nil)
     {
-        obj3.info = [[NSMutableArray alloc] init]; //get the info array
+        obj3.info = [[NSMutableArray alloc] init];
     }
     if (obj3.infodef == nil)
     {
-        obj3.info = [[NSMutableArray alloc] init]; //get the infodef array
+        obj3.info = [[NSMutableArray alloc] init];
     }
-    deter.text = @"Word"; //set deter to word
-    worddef.text = [obj3.info objectAtIndex:counter]; //have the object at counter appear
+    deter.text = @"Word";
+    worddef.text = [obj3.info objectAtIndex:counter];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (IBAction)buttonPressFlip:(id)sender
 {
     if([worddef.text isEqualToString:[obj3.info objectAtIndex:counter]])
-    { //if the word appears
-    worddef.text = [obj3.infodef objectAtIndex:counter]; //show definition
-    deter.text = @"Definition"; //have definition in the box
-        goto END; //go to end
-    }
-    if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter]]) //if infodef is showing
     {
-    worddef.text = [obj3.info objectAtIndex:counter]; //show the word
-    deter.text = @"Word"; //change to word
-        goto END; //go to end
+    worddef.text = [obj3.infodef objectAtIndex:counter];
+    deter.text = @"Definition";
+        goto END;
+    }
+    if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter]])
+    {
+    worddef.text = [obj3.info objectAtIndex:counter];
+    deter.text = @"Word";
+        goto END;
     }
 END:
-    {} //used to skip ifs
+    {}
     
 }
 
 - (IBAction)buttonPressNext:(id)sender
 {
-    counter++; //increment counter
-    if(counter == [obj3.info count]) //if at the end
+    counter++;
+    if(counter == [obj3.info count])
     {
-        counter = 0; //make it the begining
+        counter = 0;
         [self refresharray];
-        goto END; //skip rest
+        goto END;
     }
     if([worddef.text isEqualToString:[obj3.info objectAtIndex:counter-1]])
-    { //go up one word
+    {
         worddef.text = [obj3.info objectAtIndex:counter];
         deter.text = @"Word";
     }
     if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter-1]])
-    { //go up one definition
+    {
         worddef.text = [obj3.infodef objectAtIndex:counter];
         deter.text = @"Definition";
     }
 END:
-    {} //skip the rest
+    {}
 
 }
 
 - (void)refresharray
 {
-    //used to refresh the screen and arrays
+    
     if ([deter.text  isEqual: @"Definition"])
     worddef.text = [obj3.infodef objectAtIndex:counter];
     if ([deter.text  isEqual: @"Word"])

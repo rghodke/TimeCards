@@ -1,10 +1,15 @@
 
 #import "View2.h"
 #import "DataClass.h"
+//@interface View2 ()
+
+//@end
 
 @implementation View2
 
-//synthesize the ui elements
+//NSMutableArray *info2 = [[NSMutableArray alloc] init];
+
+
 @synthesize label3;
 @synthesize textField2;
 @synthesize button2;
@@ -13,31 +18,56 @@
 @synthesize info;
 @synthesize tableView;
 @synthesize done;
+//NSMutableArray *info = [NSMutableArray array]
+//public{
+//NSMutableArray *info = nil;
+int selectedRow;
+//}
+//info[][] = NULL;
 
-int selectedRow;//local to class int variable
+//NSMutableArray *info = nil;
+//+ (void)initialize {
+//    if(!info)
+//        info = [[NSMutableArray alloc] init];
+//}
 
-DataClass *obj= nil; //local to class obj variable
+
+DataClass *obj= nil;
 
 
 - (void)viewDidLoad {
+    //NSMutableArray *info = obj.info;
     obj = [DataClass getInstance];
     if (obj.info == nil)
     {
-        obj.info = [[NSMutableArray alloc] init]; //get the gloabl info array
+        obj.info = [[NSMutableArray alloc] init];
     }
     textField2.clearButtonMode = UITextFieldViewModeWhileEditing;
-
+    //[obj.info addObject:@"Hey you"];
+    button3.hidden = TRUE;
+    // When the user starts typing, show the clear button in the text field.
+    //slider.minimumValue = 6;
+    //slider.maximumValue = 24;
+    
+    //textField2.clearButtonMode = UITextFieldViewModeWhileEditing;
+    // When the view first loads, display the placeholder text that's in the
+    // text field in the label.
+    //label3.text = textField2.placeholder;
 }
 
 
-
+//- (IBAction)buttonPress:(id)sender
 - (IBAction)buttonPression:(id)sender
 {
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle: nil];
+    //label.text = @"button has been pressed";
+    //info = textField.text;
+    //self.string2 = @"ITS NOT WORKING";
+    //NSMutableArray *info = [[NSMutableArray alloc] init];
     
-	//check for duplicates    
-    for (int i=0; i<[obj.info count]; i++)//go through them all
+    for (int i=0; i<[obj.info count]; i++)
     {
-        if([textField2.text isEqualToString:[obj.info objectAtIndex:i]]) //look for repeats
+        if([textField2.text isEqualToString:[obj.info objectAtIndex:i]])
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
                                                             message:@"This already exists"
@@ -46,13 +76,13 @@ DataClass *obj= nil; //local to class obj variable
                                                   otherButtonTitles:nil];
             [alert show];
             [alert release];
-            [obj.info addObject:textField2.text]; //add whats in the text field
+            [obj.info addObject:textField2.text];
             goto END;
             break;
         }
     }
     
-    if([textField2.text isEqualToString:@"Type Word Here"]) //if the text is Type Word Here
+    if([textField2.text isEqualToString:@"Type Word Here"])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"You must type a word"
@@ -64,7 +94,7 @@ DataClass *obj= nil; //local to class obj variable
         goto END;
     }
     
-    if ([textField2.text isEqualToString:@""]) //if the text is nothing
+    if ([textField2.text isEqualToString:@""])
     {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -73,16 +103,16 @@ DataClass *obj= nil; //local to class obj variable
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        [alert release]; //show alert
+        [alert release];
         goto END;
     }
     
     else
     {
-    [obj.info addObject:textField2.text]; //add the object in
+    [obj.info addObject:textField2.text];
     }
 END:
-    [self.tableView reloadData]; //refresh the data
+    [self.tableView reloadData];
     
 }
 
@@ -91,7 +121,7 @@ END:
 	if (theTextField == textField2){
 		[textField2 resignFirstResponder];
         // Invoke the method that changes the greeting.
-    
+    //    [self updateString];
 	}
 	return YES;
 }
@@ -102,7 +132,7 @@ END:
     // Dismiss the keyboard when the view outside the text field is touched.
     [textField2 resignFirstResponder];
     // Revert the text field to the previous value.
-   
+    //textField2.text = @"Type Word Here";
     [super touchesBegan:touches withEvent:event];
 }
 
@@ -112,9 +142,19 @@ END:
     {
     textField2.text = nil;
     }
-
+  //  if ([textField2.text isEqualToString:@"Type Word Here"]) {
+   //     textField2.text = @"";
+        //textView.textColor = [UIColor blackColor]; //optional
+   // }
+   // [textView becomeFirstResponder];
 }
 
+//- (void)textFieldDidEndEditing:(UITextField *)textFieldedit {
+    //if(textFieldedit == textField2)
+    //{
+    //    textField2.text = @"Type Word Here";
+    //}
+//}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -139,8 +179,10 @@ END:
     
     // Set the data for this cell:
     
-    cell.textLabel.text = [obj.info objectAtIndex:indexPath.row]; //set to the data
-    cell.detailTextLabel.text = @"More text";   
+    cell.textLabel.text = [obj.info objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = @"More text";
+    //cell.imageView.image = [UIImage imageNamed:@"flower.png"];
+    
     // set the accessory view:
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
     
@@ -149,19 +191,20 @@ END:
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 
     selectedRow = indexPath.row;
-    
+    //NSLog(@"touch on row %d", selectedRow);
 
-    textField2.text = [obj.info objectAtIndex:selectedRow]; //put the data in the text field
-    button2.hidden = TRUE; //hide button 2
-    button3.hidden = FALSE; //show button 3
+    textField2.text = [obj.info objectAtIndex:selectedRow];
+    button2.hidden = TRUE;
+    button3.hidden = FALSE;
 }
 
 - (IBAction)buttonPressEdit:(id)sender
 {
-    for (int i=0; i<[obj.info count]; i++) { //go through them all looking for repeats
+    for (int i=0; i<[obj.info count]; i++) {
         if([textField2.text isEqualToString:[obj.info objectAtIndex:i]])
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
@@ -175,9 +218,9 @@ END:
         }
     }
     
-    [obj.info replaceObjectAtIndex:selectedRow withObject:textField2.text]; //switch out the info
-    button3.hidden = TRUE; //hide button 3
-    button2.hidden = FALSE; //show button 2
+    [obj.info replaceObjectAtIndex:selectedRow withObject:textField2.text];
+    button3.hidden = TRUE;
+    button2.hidden = FALSE;
     [self.tableView reloadData];
     [self textFieldShouldReturn:textField2];
     
@@ -185,7 +228,7 @@ END:
 
 - (IBAction)buttonPressDone:(id)sender
 {
-    View3 *third = [[View3 alloc] initWithNibName:@"View3" bundle:[NSBundle mainBundle]]; //switch to the new view
+    View3 *third = [[View3 alloc] initWithNibName:@"View3" bundle:[NSBundle mainBundle]];
     [self presentViewController:third animated:YES completion:nil];
 }
 
@@ -193,8 +236,9 @@ END:
 //Used with the text fields to dismiss keyboard
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    //[textField2 resignFirstResponder];
     button3.hidden = TRUE;
-    button2.hidden = FALSE; //show button 2
+    button2.hidden = FALSE;
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 
 }
