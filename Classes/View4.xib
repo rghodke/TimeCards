@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="View4">
             <connections>
+                <outlet property="back" destination="AmP-iH-0KV" id="aAA-MT-GCz"/>
                 <outlet property="deter" destination="jpj-JW-X6y" id="XvO-n8-jX6"/>
                 <outlet property="flip" destination="gKg-Wm-GRG" id="g0H-8O-Waq"/>
                 <outlet property="hint" destination="pta-Gt-6rR" id="Ijb-Va-O9B"/>
@@ -36,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKg-Wm-GRG">
-                    <rect key="frame" x="72" y="331" width="30" height="30"/>
+                    <rect key="frame" x="222" y="264" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Flip">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,13 +74,23 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKE-fa-DO5">
-                    <rect key="frame" x="130" y="269" width="48" height="30"/>
+                    <rect key="frame" x="63" y="269" width="48" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Shuffle">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="buttonPressShuffle:" destination="-1" eventType="touchDown" id="QLM-ef-5Jr"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AmP-iH-0KV">
+                    <rect key="frame" x="63" y="331" width="35" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Back">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonPressBack:" destination="-1" eventType="touchDown" id="27a-6t-hOq"/>
                     </connections>
                 </button>
             </subviews>

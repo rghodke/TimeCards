@@ -67,6 +67,30 @@ END:
     
 }
 
+
+- (IBAction)buttonPressBack:(id)sender
+{
+    counter--; //decrement counter
+    if(counter == -1) //if its -1
+    {
+        counter = [obj3.info count] - 1; //dock one off
+        [self refresharray]; //refresh the array
+        goto END; //skip code
+    }
+    if([worddef.text isEqualToString:[obj3.info objectAtIndex:counter+1]])
+    { //if the text is the same as one object up
+        worddef.text = [obj3.info objectAtIndex:counter];
+        deter.text = @"Word"; //go back a word
+    }
+    if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter+1]])
+    {
+        worddef.text = [obj3.infodef objectAtIndex:counter];
+        deter.text = @"Definition"; //if its same as the defintion above, go back one
+    }
+END:
+    {} //used to skip code
+
+
 - (IBAction)buttonPressNext:(id)sender
 {
     counter++; //increment counter
