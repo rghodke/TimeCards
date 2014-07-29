@@ -1,10 +1,4 @@
-//
-//  View5.m
-//  TimeCards
-//
-//  Created by Ron on 7/14/14.
-//
-//
+//WORK IN PROGRESS
 
 #import "View5.h"
 

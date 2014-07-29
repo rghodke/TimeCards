@@ -4,8 +4,7 @@
 
 @implementation View2
 
-
-
+//synthesize the different elements
 @synthesize label3;
 @synthesize textField2;
 @synthesize button2;
@@ -14,28 +13,26 @@
 @synthesize info;
 @synthesize tableView;
 @synthesize done;
-
-int selectedRow;
-DataClass *obj= nil;
+int selectedRow; //int global to this file
+DataClass *obj= nil; //DataClass global to this file
 
 
 - (void)viewDidLoad {
     obj = [DataClass getInstance];
     if (obj.info == nil)
     {
-        obj.info = [[NSMutableArray alloc] init]; //get the global info array
+        obj.info = [[NSMutableArray alloc] init]; //get the global info array from the DataClass file
     }
-    textField2.clearButtonMode = UITextFieldViewModeWhileEditing;
-    button3.hidden = TRUE; //make sure button 3 is hidden
-
+    textField2.clearButtonMode = UITextFieldViewModeWhileEditing; //clear when editing
+    button3.hidden = TRUE; //hide button 3
 }
 
 
 - (IBAction)buttonPression:(id)sender
 {
-        for (int i=0; i<[obj.info count]; i++)
+    for (int i=0; i<[obj.info count]; i++) //loop through all the objects
     {
-        if([textField2.text isEqualToString:[obj.info objectAtIndex:i]]) //alert if same data
+        if([textField2.text isEqualToString:[obj.info objectAtIndex:i]]) //if same object exists
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
                                                             message:@"This already exists"
@@ -43,14 +40,14 @@ DataClass *obj= nil;
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
-            [alert release];
-            [obj.info addObject:textField2.text];
-            goto END;
+            [alert release]; //show alert if adding the same
+            [obj.info addObject:textField2.text]; //add it anyways
+            goto END; //skip the rest of the code
             break;
         }
     }
     
-    if([textField2.text isEqualToString:@"Type Word Here"]) //alert if Type Word Here
+    if([textField2.text isEqualToString:@"Type Word Here"]) //if default text exists
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"You must type a word"
@@ -58,11 +55,11 @@ DataClass *obj= nil;
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        [alert release];
-        goto END;
+        [alert release]; //show alert but this time don't add
+        goto END;//skip rest of code
     }
     
-    if ([textField2.text isEqualToString:@""]) //alert if blank
+    if ([textField2.text isEqualToString:@""]) //if only blank exists
     {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -71,16 +68,16 @@ DataClass *obj= nil;
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        [alert release];
-        goto END;
+        [alert release]; //show alert and don't add
+        goto END;//skip rest of code
     }
     
     else
     {
-    [obj.info addObject:textField2.text];
+    [obj.info addObject:textField2.text]; //if everything checks out add it
     }
 END:
-    [self.tableView reloadData];
+    [self.tableView reloadData]; //reload the data
     
 }
 
@@ -106,11 +103,10 @@ END:
 - (void)textFieldDidBeginEditing:(UITextField *)textFieldedit {
     if(textFieldedit == textField2)
     {
-    textField2.text = nil; //set to nothing
+    textField2.text = nil; //set the text to nil
     }
- 
+  
 }
-
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -135,10 +131,9 @@ END:
     
     // Set the data for this cell:
     
-    cell.textLabel.text = [obj.info objectAtIndex:indexPath.row]; //set the text to the data
-    cell.detailTextLabel.text = @"More text";
+    cell.textLabel.text = [obj.info objectAtIndex:indexPath.row]; //set the text to the object at that spot
+    cell.detailTextLabel.text = @"More text"; //by default
     
-    // set the accessory view:
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -148,17 +143,16 @@ END:
     
     [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 
-    selectedRow = indexPath.row;
-
-    textField2.text = [obj.info objectAtIndex:selectedRow];
-    button2.hidden = TRUE;
+    selectedRow = indexPath.row; //make selectedRow be the spot selected
+    textField2.text = [obj.info objectAtIndex:selectedRow]; //make the textbox show what was typed
+    button2.hidden = TRUE; //hide button 2
     button3.hidden = FALSE; //show button 3
 }
 
 - (IBAction)buttonPressEdit:(id)sender
 {
-    for (int i=0; i<[obj.info count]; i++) {
-        if([textField2.text isEqualToString:[obj.info objectAtIndex:i]]) //alert if same
+    for (int i=0; i<[obj.info count]; i++) { //go through all objects
+        if([textField2.text isEqualToString:[obj.info objectAtIndex:i]]) //if same thing
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
                                                             message:@"This already exists"
@@ -166,32 +160,33 @@ END:
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             [alert show];
-            [alert release];
+            [alert release]; //show alert if same thing is added
             break;
         }
     }
     
-    [obj.info replaceObjectAtIndex:selectedRow withObject:textField2.text]; //replace objects
-    button3.hidden = TRUE;
-    button2.hidden = FALSE; //show button 2
-    [self.tableView reloadData];
+    [obj.info replaceObjectAtIndex:selectedRow withObject:textField2.text]; //replace by default
+    button3.hidden = TRUE; //show button 3
+    button2.hidden = FALSE; //hide button 2
+    [self.tableView reloadData]; //reload the data
     [self textFieldShouldReturn:textField2];
     
 }
 
 - (IBAction)buttonPressDone:(id)sender
 {
+    //transition to the next view
     View3 *third = [[View3 alloc] initWithNibName:@"View3" bundle:[NSBundle mainBundle]];
-    [self presentViewController:third animated:YES completion:nil]; //change view
+    [self presentViewController:third animated:YES completion:nil];
 }
 
 
 //Used with the text fields to dismiss keyboard
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    button3.hidden = TRUE;
+    button3.hidden = TRUE; //hide button 3
     button2.hidden = FALSE; //show button 2
-    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+    [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES]; //unselect what was selected
 
 }
 

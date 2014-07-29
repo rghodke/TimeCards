@@ -13,6 +13,7 @@
                 <outlet property="hint" destination="pta-Gt-6rR" id="Ijb-Va-O9B"/>
                 <outlet property="hintinfo" destination="j3C-xU-nkT" id="Xf9-dK-v2z"/>
                 <outlet property="next" destination="859-Ku-vNS" id="u5F-Qo-dam"/>
+                <outlet property="previous" destination="RGn-MM-X0b" id="5qg-H4-jSG"/>
                 <outlet property="shuffle" destination="JKE-fa-DO5" id="iug-LW-4dw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="worddef" destination="d5p-c5-2oH" id="ALU-Gt-Qqj"/>
@@ -91,6 +92,16 @@
                     </state>
                     <connections>
                         <action selector="buttonPressBack:" destination="-1" eventType="touchDown" id="27a-6t-hOq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGn-MM-X0b">
+                    <rect key="frame" x="261" y="20" width="59" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Previous">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonPressPrevious:" destination="-1" eventType="touchDown" id="TdT-qX-J3b"/>
                     </connections>
                 </button>
             </subviews>

@@ -1,11 +1,9 @@
 
 #import "DataClass.h"
-
+//THIS FILE IS GLOBAL VARIABLE FILE
 @interface DataClass ()
 
 @end
-
-//global variable class
 
 @implementation DataClass
 @synthesize info;

@@ -4,8 +4,8 @@
 #import "View2.h"
 
 @implementation TimeCardsAppDelegate   
-
-@synthesize window;  //synthesize elements
+//synthesize the properties for the different elements
+@synthesize window;
 @synthesize myViewController;
 
 
@@ -24,10 +24,8 @@
 	[window makeKeyAndVisible];
 }
 
-
-//dealloc is no longer needed but put as test and for failsafe
-- (void)dealloc
-{
+//this method is no longer needed since dealloc is now automatic
+- (void)dealloc {
 	[myViewController release];
 	[window release];
 	[super dealloc];

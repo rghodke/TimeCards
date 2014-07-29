@@ -17,9 +17,12 @@
 @synthesize hint;
 @synthesize hintinfo;
 @synthesize shuffle;
-DataClass *obj3= nil; //local to this file variable
-int counter = 0; //counter variable local to this file
-int flag = 0; //flag variable local to this file
+@synthesize back;
+@synthesize previous;
+//local variables for this view
+DataClass *obj3= nil;
+int counter = 0;
+int flag = 0;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,116 +40,127 @@ int flag = 0; //flag variable local to this file
     obj3 = [DataClass getInstance];
     if (obj3.info == nil)
     {
-        obj3.info = [[NSMutableArray alloc] init]; //get the info array
+        obj3.info = [[NSMutableArray alloc] init]; //get info array
     }
     if (obj3.infodef == nil)
     {
-        obj3.info = [[NSMutableArray alloc] init]; //get the infodef array
+        obj3.info = [[NSMutableArray alloc] init]; //get infodef array
     }
-    deter.text = @"Word"; //set deter to word
-    worddef.text = [obj3.info objectAtIndex:counter]; //have the object at counter appear
+    deter.text = @"Word"; //set header to word
+    worddef.text = [obj3.info objectAtIndex:counter]; //set worddef to the object at info[counter]
     // Do any additional setup after loading the view from its nib.
 }
 
 - (IBAction)buttonPressFlip:(id)sender
 {
+    //when flipping make sure the header is updated(definition to word and word to definition)
     if([worddef.text isEqualToString:[obj3.info objectAtIndex:counter]])
-    { //if the word appears
-    worddef.text = [obj3.infodef objectAtIndex:counter]; //show definition
-    deter.text = @"Definition"; //have definition in the box
-        goto END; //go to end
-    }
-    if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter]]) //if infodef is showing
     {
-    worddef.text = [obj3.info objectAtIndex:counter]; //show the word
-    deter.text = @"Word"; //change to word
-        goto END; //go to end
+    worddef.text = [obj3.infodef objectAtIndex:counter];
+    deter.text = @"Definition";
+        goto END;
+    }
+    if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter]])
+    {
+    worddef.text = [obj3.info objectAtIndex:counter];
+    deter.text = @"Word";
+        goto END;
     }
 END:
-    {} //used to skip ifs
+    {}
     
 }
 
+- (IBAction)buttonPressPrevious:(id)sender
+{
+    //go back a view
+    View3 *third = [[View3 alloc] initWithNibName:@"View3" bundle:[NSBundle mainBundle]];
+    [self presentViewController:third animated:YES completion:nil];
+}
 
 - (IBAction)buttonPressBack:(id)sender
 {
-    counter--; //decrement counter
-    if(counter == -1) //if its -1
+    //go back a flash card
+    counter--;
+    if(counter == -1)
     {
-        counter = [obj3.info count] - 1; //dock one off
-        [self refresharray]; //refresh the array
-        goto END; //skip code
+        counter = [obj3.info count] - 1; //loop around
+        [self refresharray];
+        goto END;
     }
     if([worddef.text isEqualToString:[obj3.info objectAtIndex:counter+1]])
-    { //if the text is the same as one object up
+    {
         worddef.text = [obj3.info objectAtIndex:counter];
-        deter.text = @"Word"; //go back a word
+        deter.text = @"Word";
     }
     if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter+1]])
     {
         worddef.text = [obj3.infodef objectAtIndex:counter];
-        deter.text = @"Definition"; //if its same as the defintion above, go back one
+        deter.text = @"Definition";
     }
 END:
-    {} //used to skip code
+    {}
+
+    
 }
 
 - (IBAction)buttonPressNext:(id)sender
 {
-    counter++; //increment counter
-    if(counter == [obj3.info count]) //if at the end
+    //go forward a flash card
+    counter++;
+    if(counter == [obj3.info count])
     {
-        counter = 0; //make it the begining
+        counter = 0; //loop around
         [self refresharray];
-        goto END; //skip rest
+        goto END;
     }
     if([worddef.text isEqualToString:[obj3.info objectAtIndex:counter-1]])
-    { //go up one word
+    {
         worddef.text = [obj3.info objectAtIndex:counter];
         deter.text = @"Word";
     }
     if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter-1]])
-    { //go up one definition
+    {
         worddef.text = [obj3.infodef objectAtIndex:counter];
         deter.text = @"Definition";
     }
 END:
-    {} //skip the rest
+    {}
 
 }
 
 - (IBAction)buttonPressHint:(id)sender
 {
-    NSString *hintfirst; //create a hint string
-    if(flag == 0) //check if flag is 0
+    NSString *hintfirst;
+    if(flag == 0)
     {
-    if(    worddef.text == [obj3.infodef objectAtIndex:counter] ) //if def is showing
+    if(    worddef.text == [obj3.infodef objectAtIndex:counter] )
     {
         NSString *hintas = [obj3.info objectAtIndex:counter];
-        hintfirst = [hintas substringToIndex:1];
-        hintinfo.text = [hintfirst stringByAppendingString:@" is the first letter"]; //give the first letter of the word
-        flag = 1; //set flag to 1
-        goto END; //go to end
+        hintfirst = [hintas substringToIndex:1]; //extract only the first letter
+        hintinfo.text = [hintfirst stringByAppendingString:@" is the first letter"];
+        flag = 1; //set to 1
+        goto END;
     }
     
-    if(    worddef.text == [obj3.info objectAtIndex:counter] ) //if word is showing
+    if(    worddef.text == [obj3.info objectAtIndex:counter] )
     {
         NSString *hintas = [obj3.infodef objectAtIndex:counter];
-        hintfirst = [hintas substringToIndex:1]; //show first letter of defintion
+        hintfirst = [hintas substringToIndex:1]; //extract only the first letter
         hintinfo.text = [hintfirst stringByAppendingString:@" is the first letter"];
-        flag = 1; //set flag to 1
+        flag = 1; //set to 1
         goto END;
     }
     }
 
-if(flag == 1) //for another hint
+if(flag == 1) //if another hint is requested
 {
     
     if(([hintinfo.text rangeOfString:@"is the first letter"].location != NSNotFound) && worddef.text == [obj3.info objectAtIndex:counter])
     {
         NSString *hintas = [obj3.infodef objectAtIndex:counter];
         hintfirst = [hintas substringFromIndex:[hintas length] - 1];
-        hintinfo.text = [hintfirst stringByAppendingString:@" is the last letter"]; //show last letter of def
+        hintinfo.text = [hintfirst stringByAppendingString:@" is the last letter"]; //take only the last letter
         flag = 0;
         goto END;
     }
@@ -155,13 +169,13 @@ if(flag == 1) //for another hint
     {
         NSString *hintas = [obj3.info objectAtIndex:counter];
         hintfirst = [hintas substringFromIndex:[hintas length] - 1];
-        hintinfo.text = [hintfirst stringByAppendingString:@" is the last letter"]; //show last letter of word
+        hintinfo.text = [hintfirst stringByAppendingString:@" is the last letter"]; //take only the last letter
         flag = 0;
         goto END;
     }
 }
 END:
-    {} //skip code
+    {}
     
 
     
@@ -170,13 +184,13 @@ END:
 
 - (IBAction)buttonPressShuffle:(id)sender
 {
-    for (int i = 0; i<3; i++) //shuffle the array 3 times
+    for (int i = 0; i<3; i++) //shuffle it 3 times
     {
-        NSLog(@"executing shuffle"); //log statement to be removed
-        NSUInteger count = [obj3.info count]; //get the number of cards
+        NSLog(@"executing shuffle");
+        NSUInteger count = [obj3.info count];
         
-        for (NSUInteger i = 0; i < count; ++i) //shuffling algorithm
-        {
+        for (NSUInteger i = 0; i < count; ++i)
+        {//shuffling method
             NSInteger remainingCount = count - i;
             NSInteger exchangeIndex = i + arc4random_uniform(remainingCount);
             [obj3.info exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
@@ -184,27 +198,27 @@ END:
 
         }
         
-    counter++; //bump the computer
-    if(counter == [obj3.info count]) //if at the end
+    counter++;
+    if(counter == [obj3.info count])
     {
-        counter = 0; //loop back around
+        counter = 0; //loop around
         [self refresharray];
         goto END;
     }
     if([worddef.text isEqualToString:[obj3.info objectAtIndex:counter-1]])
     {
-        worddef.text = [obj3.info objectAtIndex:counter]; //loop around
-        deter.text = @"Word";
+        worddef.text = [obj3.info objectAtIndex:counter];
+        deter.text = @"Word"; //set to word
     }
     if([worddef.text isEqualToString:[obj3.infodef objectAtIndex:counter-1]])
     {
-        worddef.text = [obj3.infodef objectAtIndex:counter]; //loop around
-        deter.text = @"Definition";
+        worddef.text = [obj3.infodef objectAtIndex:counter];
+        deter.text = @"Definition"; //set to defintion
     }
     
     
 END:
-    {} //skip code
+    {} //skip rest of code
         
     }
     
@@ -212,7 +226,7 @@ END:
 
 - (void)refresharray
 {
-    //used to refresh the screen and arrays
+    //refresh the data
     if ([deter.text  isEqual: @"Definition"])
     worddef.text = [obj3.infodef objectAtIndex:counter];
     if ([deter.text  isEqual: @"Word"])

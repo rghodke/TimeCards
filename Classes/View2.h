@@ -8,9 +8,10 @@ extern NSMutableArray *info2;
 
 
 @interface View2 : UIViewController <UITextFieldDelegate>
+//The primary View
 
 {
-    //create the buttons and ui elemetns used
+ //The different elements of the view
     IBOutlet UILabel *label3;
     IBOutlet UITextField *textField2;
     IBOutlet UIButton *button2;
@@ -20,13 +21,13 @@ extern NSMutableArray *info2;
     NSMutableArray *info;
     IBOutlet UITableView *tableView;
 }
-//create the appropriate properties for them
+//the different properties for the different elements
 @property (nonatomic, retain) UILabel *label3;
 @property (nonatomic, retain) UITextField *textField2;
 @property (nonatomic, retain) UIButton *button2;
 @property (nonatomic, retain) UIButton *button3;
 @property (nonatomic, retain) UIButton *done;
-@property (nonatomic, copy) NSString *string2;
+@property (nonatomic, copy) NSString *string2; //set to copy for this string
 @property (nonatomic) NSMutableArray *info;
 @property (nonatomic, retain) UITableView *tableView;
 

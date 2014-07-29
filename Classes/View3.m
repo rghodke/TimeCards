@@ -2,12 +2,11 @@
 #import "View3.h"
 #import "DataClass.h"
 
-//@interface View3 ()
-
-//@end
+//View for adding definitions to the words
 
 @implementation View3
-//synthesize all the elements
+//synthesize the elements
+@synthesize previous;
 @synthesize ListofDefinitions;
 @synthesize ListofWords;
 @synthesize DefinitionTextField;
@@ -15,11 +14,9 @@
 @synthesize Defintion;
 @synthesize AddDefinition;
 @synthesize donezies;
-
-//global variables for this class only
-int selectedRow2 = nil;
-DataClass *obj2= nil;
-NSIndexPath *selector = nil;
+int selectedRow2 = nil; //variable local to this file
+DataClass *obj2= nil; //variable local to this file
+NSIndexPath *selector = nil; //variable local to this file
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,14 +25,13 @@ NSIndexPath *selector = nil;
         obj2 = [DataClass getInstance];
         if (obj2.infodef == nil)
         {
-            obj2.infodef = [[NSMutableArray alloc] init]; //get the global infodef array
+            obj2.infodef = [[NSMutableArray alloc] init]; //get info def array
         }
         for (NSInteger i = 0; i < [obj2.info count]; ++i)
         {
-            [obj2.infodef addObject:@"Type Definition Here"]; //make the default "Type Definition Here"
+            [obj2.infodef addObject:@"Type Definition Here"]; //set all values to Type Defintion Here by default
         }
-        
-        EditDefinition.hidden = TRUE; //Edit is hidden (cleaner look)
+        EditDefinition.hidden = TRUE; //hide EditDefinition
         // Custom initialization
     }
     return self;
@@ -43,25 +39,26 @@ NSIndexPath *selector = nil;
 
 - (void)viewDidLoad
 {
-EditDefinition.hidden = TRUE; //hide both buttons"
-    donezies.hidden = TRUE;
+EditDefinition.hidden = TRUE; //hide both EditDefinition
+    donezies.hidden = TRUE;//and Done
     DefinitionTextField.text = @"Click a definition to begin editing"; //Default text
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void) CheckifDoneAdding
 {
-    for(int i=0;i<[obj2.infodef count];i++) //go through looking for string "Type Definition Here" if found
+    for(int i=0;i<[obj2.infodef count];i++) //go through all of the array
     {
-        if([[obj2.infodef objectAtIndex:i]  isEqual: @"Type Definition Here"])
+        if([[obj2.infodef objectAtIndex:i]  isEqual: @"Type Definition Here"]) //look for Type Definition Here
         {
-            EditDefinition.hidden = FALSE; //show edit
+            EditDefinition.hidden = FALSE; //show Edit is it is
             donezies.hidden = TRUE; //hide done
         }
         else
-        { //opposite
-            EditDefinition.hidden = TRUE;
-            donezies.hidden = FALSE;
+        {
+            EditDefinition.hidden = TRUE; //else hide edit
+            donezies.hidden = FALSE; //show done
         }
     }
     
@@ -78,7 +75,6 @@ EditDefinition.hidden = TRUE; //hide both buttons"
 	if (theTextField == DefinitionTextField){
 		[DefinitionTextField resignFirstResponder];
         // Invoke the method that changes the greeting.
-        //    [self updateString];
 	}
 	return YES;
 }
@@ -96,8 +92,16 @@ EditDefinition.hidden = TRUE; //hide both buttons"
 - (void)textFieldDidBeginEditing:(UITextField *)textFieldedit {
     if(textFieldedit == DefinitionTextField)
     {
-        DefinitionTextField.text = nil; //set to nothing
+        DefinitionTextField.text = nil; //set to nil by default
     }
+
+}
+
+- (IBAction)buttonPressPrevious:(id)sender
+{
+    //go back a view
+    View2 *second = [[View2 alloc] initWithNibName:@"View2" bundle:[NSBundle mainBundle]];
+    [self presentViewController:second animated:YES completion:nil];
 }
 
 
@@ -107,7 +111,7 @@ EditDefinition.hidden = TRUE; //hide both buttons"
     // Return the number of rows in the section.
     // If you're serving data from an array, return the length of the array:
     if(tableView == self.ListofWords)
-    return [obj2.info count]; //return the number of objects
+    return [obj2.info count]; //return the count
     if(tableView == self.ListofDefinitions)
     return [obj2.info count];
 }
@@ -127,9 +131,8 @@ EditDefinition.hidden = TRUE; //hide both buttons"
     
     // Set the data for this cell:
     
-    cell.textLabel.text = [obj2.info objectAtIndex:indexPath.row]; //set to what was typed before
-    cell.detailTextLabel.text = @"More text";
-    
+    cell.textLabel.text = [obj2.info objectAtIndex:indexPath.row]; //set the text to the object at the index
+    cell.detailTextLabel.text = @"More text"; //by default
     // set the accessory view:
     cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
     
@@ -147,8 +150,8 @@ EditDefinition.hidden = TRUE; //hide both buttons"
         
         // Set the data for this cell:
         
-        cell.textLabel.text = [obj2.infodef objectAtIndex:indexPath.row]; //add the definition next to it
-        cell.detailTextLabel.text = @"More text";
+        cell.textLabel.text = [obj2.infodef objectAtIndex:indexPath.row]; //set infodef to the text of the object at index
+        cell.detailTextLabel.text = @"More text"; //by default
         
         // set the accessory view:
         cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
@@ -159,7 +162,7 @@ EditDefinition.hidden = TRUE; //hide both buttons"
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [ListofDefinitions deselectRowAtIndexPath:indexPath animated:NO]; //highlight both at the same time
+    [ListofDefinitions deselectRowAtIndexPath:indexPath animated:NO]; //deselect both
     [ListofWords deselectRowAtIndexPath:indexPath animated:NO];
 
 }
@@ -168,36 +171,68 @@ EditDefinition.hidden = TRUE; //hide both buttons"
     
     if(tableView == ListofWords)
     {
+        //select both
     [ListofWords selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     [ListofDefinitions selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    selector = indexPath; //select the right location
+        selector = indexPath;
     selectedRow2 = indexPath.row;
-    EditDefinition.hidden = FALSE;
-        donezies.hidden = TRUE; //show done
-
+    EditDefinition.hidden = FALSE; //show Edit
+        donezies.hidden = TRUE; //hide done
     }
     
     if(tableView == ListofDefinitions)
     {
+        //select both
         [ListofDefinitions selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         [ListofWords selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        selector = indexPath; //select the right location
+        selector = indexPath;
         selectedRow2 = indexPath.row;
-        EditDefinition.hidden = FALSE;
-        donezies.hidden = TRUE; //show done
-
+        EditDefinition.hidden = FALSE; //show edit
+        donezies.hidden = TRUE; //hide done
     }
     
     if(![[obj2.infodef objectAtIndex:selectedRow2]  isEqual: @"Type Definition Here"])
     {
-        DefinitionTextField.text = [obj2.infodef objectAtIndex:selectedRow2]; //text field shows whats in objinfo
+        DefinitionTextField.text = [obj2.infodef objectAtIndex:selectedRow2]; //if not Type Definition Here set text to the infodef objects
     }
     
 }
 
 - (IBAction)buttonPressEdit:(id)sender
 {
-    if([DefinitionTextField.text isEqualToString:@"Type Definition Here"]) //look for Type Definition Here
+    if([DefinitionTextField.text isEqualToString:@"Type Definition Here"]) //can't have default text
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"You must type a definition"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release]; //show alert
+        goto END;
+        
+    }
+    
+    for (int i=0; i<[obj2.infodef count]; i++) {
+        if([DefinitionTextField.text isEqualToString:[obj2.infodef objectAtIndex:i]]) //can't have same info
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                            message:@"This already exists"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release]; //show alert
+            [obj2.infodef replaceObjectAtIndex:selectedRow2 withObject:DefinitionTextField.text]; //replace object
+            break;
+            goto END; //skip code
+            
+        }
+    }
+    
+
+    
+    if([DefinitionTextField.text isEqualToString:@"Click a definition to begin editing"]) //look for default string
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"You must type a definition"
@@ -207,54 +242,23 @@ EditDefinition.hidden = TRUE; //hide both buttons"
         [alert show];
         [alert release]; //alert out
         goto END;
-        
-    }
-    
-    for (int i=0; i<[obj2.infodef count]; i++) { //look for repeats
-        if([DefinitionTextField.text isEqualToString:[obj2.infodef objectAtIndex:i]])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
-                                                            message:@"This already exists"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-            [obj2.infodef replaceObjectAtIndex:selectedRow2 withObject:DefinitionTextField.text];
-            break;
-            goto END; //skip the rest of if statements
-            
-        }
-    }
-    
-
-    
-    if([DefinitionTextField.text isEqualToString:@"Click a definition to begin editing"])
-//Look for "Click a definition to begin editing"    
-	{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"You must type a definition"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-        goto END; //skip the rest
     }
     else
     {
-    [obj2.infodef replaceObjectAtIndex:selectedRow2 withObject:DefinitionTextField.text]; //switch them out
+    [obj2.infodef replaceObjectAtIndex:selectedRow2 withObject:DefinitionTextField.text]; //if everything checks out, switch it out
     }
 END:
+    //Skip code protocol
     [self.ListofDefinitions reloadData];
     [self textFieldShouldReturn:DefinitionTextField];
-    [self CheckifDoneAdding]; //check if all elements are accounted for
+    [self CheckifDoneAdding];
 }
 
 
 - (IBAction)buttonPressDone:(id)sender
 {
-    View4 *fourth = [[View4 alloc] initWithNibName:@"View4" bundle:[NSBundle mainBundle]]; //go to next view
+    //transition to next view
+    View4 *fourth = [[View4 alloc] initWithNibName:@"View4" bundle:[NSBundle mainBundle]];
     [self presentViewController:fourth animated:YES completion:nil];
 }
 
@@ -264,9 +268,11 @@ END:
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self CheckifDoneAdding];
+    //check button and deselect it all
     [ListofWords deselectRowAtIndexPath:[ListofWords indexPathForSelectedRow] animated:YES];
     [ListofDefinitions deselectRowAtIndexPath:[ListofDefinitions indexPathForSelectedRow] animated:YES];
-
+    selectedRow2 = NULL;
+    
     
 }
 

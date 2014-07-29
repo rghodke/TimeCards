@@ -2,14 +2,14 @@
 #import <UIKit/UIKit.h>
 
 @class MyViewController;
-
+//interface for opening screen
 @interface TimeCardsAppDelegate : NSObject <UIApplicationDelegate> {
-	
-	IBOutlet UIWindow *window; //create the window
-	MyViewController *myViewController; //create the view controller
+	//the different elements
+	IBOutlet UIWindow *window;
+	MyViewController *myViewController;
 }
-
-@property (nonatomic, retain) UIWindow *window; //window property
-@property (nonatomic, retain) MyViewController *myViewController;  //view controller property
+//the properties for the different elements
+@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) MyViewController *myViewController;
 
 @end

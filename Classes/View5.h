@@ -1,10 +1,4 @@
-//
-//  View5.h
-//  TimeCards
-//
-//  Created by Ron on 7/14/14.
-//
-//
+//WORK IN PROGRESS
 
 #import <UIKit/UIKit.h>
 
